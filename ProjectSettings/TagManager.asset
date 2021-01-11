@@ -11,6 +11,12 @@ TagManager:
   - KeyboardControl
   - DEAD
   - BulletCountUI
+  - ComplettedLevelStar
+  - LevelFinishedTime
+  - CurrentLevelNumber
+  - RestartLevel
+  - NextLevel
+  - FinishedLevelPanel
   layers:
   - Default
   - TransparentFX
