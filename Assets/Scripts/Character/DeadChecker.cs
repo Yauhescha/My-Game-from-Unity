@@ -21,9 +21,9 @@ public class DeadChecker : MonoBehaviour {
 			
 	}
 	void Update() {
-		if (GetComponent<Character>().currentHealth <= 0) {
+		if (GetComponent<Character>().CurrentHealth <= 0) {
 
-			GetComponent<Character>().currentHealth = 1;
+			GetComponent<Character>().CurrentHealth = 1;
 			Time.timeScale = 0;
 			GameObject.FindWithTag("KeyboardControl").SetActive(false);
 			deadScreen.SetActive(true);

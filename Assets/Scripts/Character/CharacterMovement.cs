@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -14,7 +14,8 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D rigidbody;
     private Animator animator;
     private SpriteRenderer sprite;
-
+    private Button fireButton;
+    private Bullet bullet;
 
     [SerializeField]
     private bool isGrounded = false;
@@ -23,7 +24,10 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField]
     private bool isJump = false;
+    [SerializeField]
+    private bool isFire = false;
 
+    private Character character;
 
     private CharState State
     {
@@ -41,6 +45,10 @@ public class CharacterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         isJump = false;
+        fireButton = GameObject.FindGameObjectWithTag("FireButton").GetComponent<Button>();
+        fireButton.onClick.AddListener(() => isFire = true) ;
+        character = GetComponent<Character>();
+        bullet = Resources.Load<Bullet>("Bullet");
         Time.timeScale = 1;
     }
 
@@ -59,8 +67,22 @@ public class CharacterMovement : MonoBehaviour
         if (isGrounded && isJump && !isOnStair) Jump();
 
         if (isOnStair) RunVertical();
-    }
 
+        if (isFire) Fire();
+        fireButton.gameObject.SetActive(character.BulletCount>0);
+
+    }
+    private void Fire() {
+        if (character.BulletCount <= 0) return;
+
+        Vector3 position = transform.position; position.y += 0.8F;
+        Bullet newBullet = Instantiate(bullet, position, bullet.transform.rotation) as Bullet;
+
+        newBullet.Parent = gameObject;
+        newBullet.Direction = newBullet.transform.right * (sprite.flipX ? -1.0F : 1.0F);
+        character.MadeFire();
+        isFire = false;
+    }
     private void Run()
     {
         if (joystick.Horizontal >= -0.2f && joystick.Horizontal <= 0.2f) return;

@@ -1,31 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Character : Unit
 {
-	public int maxHealth = 100;
-	public int currentHealth;
+	[SerializeField]
+	private int maxHealth = 100;
+	[SerializeField]
+	private int currentHealth;
+	[SerializeField]
+	private int bulletCount = 0;
+
+
 
 	private HealthBar healthBar;
 
-	private void Awake()
+    public int MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+    public int BulletCount { get => bulletCount; set => bulletCount = value; }
+	public void MadeFire() { bulletCount--; if (bulletCount < 0) bulletCount = 0; }
+	public void FoundBuller(int count) { bulletCount += count; }
+    private void Awake()
 	{
 		healthBar = FindObjectOfType<HealthBar>();
+		
 	}
 
 	void Start()
 	{
-		currentHealth = maxHealth;
-		healthBar.SetMaxHealth(maxHealth);
+		CurrentHealth = MaxHealth;
+		healthBar.SetMaxHealth(MaxHealth);
+		
 	}
     public override void ReceiveDamage(int damage)
     {
-		currentHealth -= damage;
-		if (currentHealth < 0)
-			currentHealth = 0;
+		CurrentHealth -= damage;
+		if (CurrentHealth < 0)
+			CurrentHealth = 0;
 
-			healthBar.SetHealth(currentHealth);
+			healthBar.SetHealth(CurrentHealth);
 	}
 	private void OnCollisionEnter2D(Collision2D collider)
 	{
