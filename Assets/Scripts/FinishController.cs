@@ -12,8 +12,6 @@ public class FinishController : MonoBehaviour
     private int secondHard;
     [SerializeField]
     private int secondNormal;
-    [SerializeField]
-    private int secondEasy;
   
 
 
@@ -21,16 +19,22 @@ public class FinishController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            int scenesCount = SceneManager.GetAllScenes().Length;
+            Time.timeScale = 0;
+            int scenesCount = SceneManager.sceneCountInBuildSettings;
             int currentScene = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log("scenesCount  "+ scenesCount);
-            Debug.Log("currentScene "+ currentScene);
 
-            PlayerPrefs.SetString("LVL_"+(currentScene), "true");
-            if(scenesCount> currentScene)
+            PlayerPrefs.SetInt("LVL_"+(currentScene), getScore());
+            if(scenesCount-1> currentScene)
                 SceneManager.LoadScene(currentScene + 1);
             else 
                 SceneManager.LoadScene(0);
         }
+    }
+    private int getScore() {
+        float time = GameObject.FindObjectOfType<TimerController>().Timer;
+        if (time <= secondHard) return 3;
+        else if (time <= secondNormal) return 2;
+        else return 1;
+        
     }
 }
