@@ -14,8 +14,15 @@ public class Character : Unit
 	private HealthBar healthBar;
 
     public int MaxHealth { get => maxHealth; set => maxHealth = value; }
-    public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
-    public int BulletCount { get => bulletCount; set => bulletCount = value; }
+    public int CurrentHealth { get => currentHealth; }
+	public void AddHealth(int countToAdd) {
+		currentHealth += countToAdd;
+		if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+		healthBar.SetHealth(CurrentHealth);
+	}
+
+	public int BulletCount { get => bulletCount; set => bulletCount = value; }
 	public void MadeFire() { bulletCount--; if (bulletCount < 0) bulletCount = 0; }
 	public void FoundBuller(int count) { bulletCount += count; }
     private void Awake()
@@ -26,15 +33,15 @@ public class Character : Unit
 
 	void Start()
 	{
-		CurrentHealth = MaxHealth;
+		currentHealth = MaxHealth;
 		healthBar.SetMaxHealth(MaxHealth);
 		
 	}
     public override void ReceiveDamage(int damage)
     {
-		CurrentHealth -= damage;
-		if (CurrentHealth < 0)
-			CurrentHealth = 0;
+		currentHealth -= damage;
+		if (currentHealth < 0)
+			currentHealth = 0;
 
 			healthBar.SetHealth(CurrentHealth);
 	}

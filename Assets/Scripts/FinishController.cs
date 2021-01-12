@@ -42,6 +42,9 @@ public class FinishController : MonoBehaviour
               ComplettedLevelStar[i].GetComponent<Image>().overrideSprite = ComplettedLevelStar[3].GetComponent<Image>().sprite;
             NextLevel.onClick.AddListener(()=> nextLevel());
             RestartLevel.onClick.AddListener(() => reloadLevel());
+            ComplettedLevelStar[1].GetComponentInChildren<Text>().text = secondNormal.ToString();
+            ComplettedLevelStar[2].GetComponentInChildren<Text>().text = secondHard.ToString();
+
             GameObject.Find("KeyboardControl").SetActive(false);
         }
     }
