@@ -5,19 +5,19 @@ using UnityEngine.UI;
 public class TimerController : MonoBehaviour
 {
     private static float timer = 0;
-    private Text textUI;
+    private GameUIController uIController;
 
     public static float Timer { get => timer; set => timer = value; }
 
     private void Awake()
     {
-        textUI = GetComponent<Text>();
+        uIController = GameObject.FindObjectOfType<GameUIController>();
         timer = 0;
     }
     private void FixedUpdate()
     {
         Timer += Time.deltaTime;
-        textUI.text = String.Format("{0:0.0}", Timer);
+        uIController.KeyboardControl_UpdateTimer(String.Format("{0:0.0}", Timer));
     }
 
 }

@@ -14,25 +14,25 @@ public class MainMenu : MonoBehaviour
     {
         levelButton = Resources.Load<Button>("UI/LevelButton");
         Time.timeScale = 1;
-        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            if (PlayerPrefs.HasKey("LVL_" + i)) {
 
                 Button levelButtonCOPY = null;
                 levelButtonCOPY = Instantiate(levelButton, content);
 
+            if (PlayerPrefs.HasKey("LVL_" + i)) {
                 int level = PlayerPrefs.GetInt("LVL_" + i);
                 Image[] images = levelButtonCOPY.GetComponentsInChildren<Image>();
                 for (int j = 1; j < level + 1; j++)
                     images[j].overrideSprite = isDone;
                 //images[j].sprite = isDone;
+            }
                 int isLevelToLoad = i;
                 levelButtonCOPY.onClick.AddListener(() => loadLevel(isLevelToLoad)); ;
                 levelButtonCOPY.GetComponentInChildren<Text>().text = i.ToString();
 
                 levelButtonCOPY = null;
                 Debug.Log("current level "+i);
-            }
         }
     }
 

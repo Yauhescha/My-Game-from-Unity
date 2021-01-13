@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class CharacterMovement : MonoBehaviour
 {
-
     private Joystick joystick;
 
     [SerializeField]
@@ -14,19 +13,17 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D rigidbody;
     private Animator animator;
     private SpriteRenderer sprite;
-    private Button fireButton;
-    private Text BulletCountUI;
     private Bullet bullet;
 
     [SerializeField]
     private bool isGrounded = false;
     [SerializeField]
-    private bool isOnStair = false;
+    public bool IsOnStair = false;
 
     [SerializeField]
-    private bool isJump = false;
+    public bool IsJump = false;
     [SerializeField]
-    private bool isFire = false;
+    public bool IsFire = false;
 
     private Character character;
 
@@ -36,19 +33,12 @@ public class CharacterMovement : MonoBehaviour
         set { animator.SetInteger("State", (int)value); }
     }
 
-    public bool IsJump { get => isJump; set => isJump = value; }
-    public bool IsOnStair { get => isOnStair; set => isOnStair = value; }
-
     private void Awake()
     {
         joystick = FindObjectOfType<Joystick>();
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-        isJump = false;
-        fireButton = GameObject.FindGameObjectWithTag("FireButton").GetComponent<Button>();
-        BulletCountUI = GameObject.FindGameObjectWithTag("BulletCountUI").GetComponent<Text>();
-        fireButton.onClick.AddListener(() => isFire = true) ;
         character = GetComponent<Character>();
         bullet = Resources.Load<Bullet>("Bullet");
         Time.timeScale = 1;
@@ -66,24 +56,23 @@ public class CharacterMovement : MonoBehaviour
 
         Run();
 
-        if (isGrounded && isJump && !isOnStair) Jump();
+        if (isGrounded && IsJump && !IsOnStair) Jump();
 
-        if (isOnStair) RunVertical();
+        if (IsOnStair) RunVertical();
 
-        if (isFire) Fire();
-        fireButton.gameObject.SetActive(character.BulletCount>0);
-        BulletCountUI.text = character.BulletCount.ToString();
+        if (IsFire) Fire();
+       
     }
     private void Fire() {
+        IsFire = false;
         if (character.BulletCount <= 0) return;
+        character.MadeFire();
 
         Vector3 position = transform.position; position.y += 0.8F;
         Bullet newBullet = Instantiate(bullet, position, bullet.transform.rotation) as Bullet;
 
         newBullet.Parent = gameObject;
         newBullet.Direction = newBullet.transform.right * (sprite.flipX ? -1.0F : 1.0F);
-        character.MadeFire();
-        isFire = false;
     }
     private void Run()
     {
@@ -110,7 +99,7 @@ public class CharacterMovement : MonoBehaviour
 
         rigidbody.velocity = Vector3.zero;
         rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-        isJump = false;
+        IsJump = false;
     }
 
 

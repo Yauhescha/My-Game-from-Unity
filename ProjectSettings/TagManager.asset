@@ -4,19 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - FireButton
-  - CanvasKeyBoard
-  - HealthBar
-  - BackgroundMusic
-  - KeyboardControl
-  - DEAD
-  - BulletCountUI
-  - ComplettedLevelStar
-  - LevelFinishedTime
-  - CurrentLevelNumber
-  - RestartLevel
-  - NextLevel
   - FinishedLevelPanel
+  - FinishedLevelPanel_CurrentLevelNumber
+  - FinishedLevelPanel_LevelFinishedTime
+  - FinishedLevelPanel_RestartLevel
+  - FinishedLevelPanel_NextLevel
+  - FinishedLevelPanel_ComplettedLevelStar
+  - CurrentLevelNumber
+  - KeyboardControl_HealthBar
+  - KeyboardControl_Timer
+  - KeyboardControl_Bullets
+  - KeyboardControl_Fire
+  - KeyboardControl_Jump
+  - KeyboardControl_Pause
   layers:
   - Default
   - TransparentFX
