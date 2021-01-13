@@ -17,6 +17,14 @@ TagManager:
   - KeyboardControl_Fire
   - KeyboardControl_Jump
   - KeyboardControl_Pause
+  - KeyboardControl
+  - PausedPanel
+  - PausedPanel_Quit
+  - PausedPanel_Resume
+  - PausedPanel_Restart
+  - DeadScreen
+  - DeadScreen_Restart
+  - DeadScreen_Quit
   layers:
   - Default
   - TransparentFX

@@ -28,27 +28,84 @@ public class GameUIController : MonoBehaviour
 
 
 
-    private GameObject pausePanel;
+    private GameObject pausedPanel;
+    private Button pausedPanel_Quit;
+    private Button pausedPanel_Resume;
+    private Button pausedPanel_Restart;
 
-   
+    private GameObject deadScreen;
+    private Button deadScreen_Restart;
+    private Button deadScreen_Quit;
+
 
     private void Awake()
     {
+
         character = FindObjectOfType<Character>();
         characterMovement = FindObjectOfType<CharacterMovement>();
         currentScene = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1;
+
         initialFinishedLevelPanel();
         initialKeyboardControl();
+        initialPausedPanel();
+        initialDeadScreen();
+
         finishedLevelPanel.SetActive(false);
         keyboardControl.SetActive(true);
-
-
-
-
-
-
-
+        pausedPanel.SetActive(false);
+        deadScreen.SetActive(false);
     }
+
+    private void initialDeadScreen()
+    {
+        deadScreen = GameObject.FindGameObjectWithTag("DeadScreen");
+        deadScreen_Restart = GameObject.FindGameObjectWithTag("DeadScreen_Restart").GetComponent<Button>();
+        deadScreen_Quit = GameObject.FindGameObjectWithTag("DeadScreen_Quit").GetComponent<Button>();
+
+        deadScreen_Restart.onClick.AddListener(() => DeadScreen_Restart());
+        deadScreen_Quit.onClick.AddListener(() => DeadScreen_Quit());
+    }
+
+    public void DeadScreen_Restart()
+    {
+        SceneManager.LoadScene(currentScene);
+    }
+    public void DeadScreen_Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void DeadScreen_ActiveScreen() {
+        keyboardControl.SetActive(false);
+        deadScreen.SetActive(true);
+    }
+    private void initialPausedPanel()
+    {
+        pausedPanel = GameObject.FindGameObjectWithTag("PausedPanel");
+        pausedPanel_Quit = GameObject.FindGameObjectWithTag("PausedPanel_Quit").GetComponent<Button>();
+        pausedPanel_Resume = GameObject.FindGameObjectWithTag("PausedPanel_Resume").GetComponent<Button>();
+        pausedPanel_Restart = GameObject.FindGameObjectWithTag("PausedPanel_Restart").GetComponent<Button>();
+
+        pausedPanel_Quit.onClick.AddListener(() => PausedPanel_Quit());
+        pausedPanel_Resume.onClick.AddListener(() => PausedPanel_Resume());
+        pausedPanel_Restart.onClick.AddListener(() => PausedPanel_Restart());
+    }
+    public void PausedPanel_Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void PausedPanel_Resume()
+    {
+        pausedPanel.SetActive(false);
+        keyboardControl.SetActive(true);
+        Time.timeScale = 1;
+    }
+    public void PausedPanel_Restart()
+    {
+        SceneManager.LoadScene(currentScene);
+    }
+
+
 
     private void initialKeyboardControl()
     {
@@ -66,20 +123,21 @@ public class GameUIController : MonoBehaviour
         keyboardControl_Jump.onClick.AddListener(() => KeyboardControl_Jump());
         keyboardControl_Pause.onClick.AddListener(() => KeyboardControl_Pause());
     }
-    private void KeyboardControl_Fire()
+    public void KeyboardControl_Fire()
     {
         characterMovement.IsFire = true;
        
     }
-    private void KeyboardControl_Jump()
+    public void KeyboardControl_Jump()
     {
         characterMovement.IsJump = true;
     }
-    private void KeyboardControl_Pause()
+    public void KeyboardControl_Pause()
     {
-        Time.timeScale = 0;
+        Debug.Log("PAUSES");
+        pausedPanel.SetActive(true);
         keyboardControl.SetActive(false);
-        pausePanel.SetActive(true);
+        Time.timeScale = 0;
     }
     public void KeyboardControl_SetBulletsCount(int count)
     {
@@ -132,7 +190,6 @@ public class GameUIController : MonoBehaviour
     private void finishedLevelPanel_nextLevel()
     {
         int scenesCount = SceneManager.sceneCountInBuildSettings;
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
         if (scenesCount - 1 > currentScene)
             SceneManager.LoadScene(currentScene + 1);
         else
@@ -140,7 +197,7 @@ public class GameUIController : MonoBehaviour
     }
     private void finishedLevelPanel_reloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(currentScene);
     }
 
 

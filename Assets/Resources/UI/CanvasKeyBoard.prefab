@@ -108,7 +108,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -163,11 +163,11 @@ GameObject:
   - component: {fileID: 8743722992866069286}
   m_Layer: 5
   m_Name: DeadScreen
-  m_TagString: Untagged
+  m_TagString: DeadScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3817981101292133765
 RectTransform:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 4336066993716946520}
   m_Layer: 5
   m_Name: RestartButton
-  m_TagString: Untagged
+  m_TagString: PausedPanel_Restart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,19 +425,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6863220204135136272}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1703628736068432942}
-        m_TargetAssemblyTypeName: PauseControler, Assembly-CSharp
-        m_MethodName: ReloadLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1022284945121428713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,8 +1115,8 @@ GameObject:
   - component: {fileID: 8902858587335489205}
   - component: {fileID: 7415456316522425718}
   m_Layer: 5
-  m_Name: TiMainMenu
-  m_TagString: Untagged
+  m_Name: ToMainMenu
+  m_TagString: DeadScreen_Quit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1233,7 +1221,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1703628736068432942}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseControler, Assembly-CSharp
         m_MethodName: QuitToMainMenu
         m_Mode: 1
@@ -2016,7 +2004,7 @@ GameObject:
   - component: {fileID: 7558384465903371808}
   m_Layer: 5
   m_Name: Restart
-  m_TagString: Untagged
+  m_TagString: DeadScreen_Restart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2121,7 +2109,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1703628736068432942}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseControler, Assembly-CSharp
         m_MethodName: ReloadLevel
         m_Mode: 1
@@ -2147,7 +2135,7 @@ GameObject:
   - component: {fileID: 8640091190194514683}
   m_Layer: 5
   m_Name: resumeButton
-  m_TagString: Untagged
+  m_TagString: PausedPanel_Resume
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2251,43 +2239,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4871932725667573562}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1994042147645662459}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 7037056652803079329}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1703628736068432942}
-        m_TargetAssemblyTypeName: PauseControler, Assembly-CSharp
-        m_MethodName: setGamePause
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6165178952755263186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3526,14 +3478,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3524133055711785516}
-  - component: {fileID: 1703628736068432942}
   m_Layer: 5
   m_Name: PausedPanel
-  m_TagString: Untagged
+  m_TagString: PausedPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3524133055711785516
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3559,18 +3510,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1703628736068432942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7037056652803079329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1642ce913923ef94c8c062a7db9cdcd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7204103547255866792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,7 +3579,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3825,7 +3764,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1703628736068432942}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseControler, Assembly-CSharp
         m_MethodName: setGamePause
         m_Mode: 6
@@ -4082,7 +4021,7 @@ GameObject:
   - component: {fileID: 276252587656865594}
   m_Layer: 5
   m_Name: quitButton
-  m_TagString: Untagged
+  m_TagString: PausedPanel_Quit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4186,19 +4125,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 836743419301039574}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1703628736068432942}
-        m_TargetAssemblyTypeName: PauseControler, Assembly-CSharp
-        m_MethodName: QuitToMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8349579784636605786
 GameObject:
   m_ObjectHideFlags: 0

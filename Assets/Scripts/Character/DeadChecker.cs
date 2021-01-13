@@ -22,11 +22,9 @@ public class DeadChecker : MonoBehaviour {
 	}
 	void Update() {
 		if (GetComponent<Character>().CurrentHealth <= 0) {
-
-			
+						
 			Time.timeScale = 0;
-			GameObject.FindWithTag("KeyboardControl").SetActive(false);
-			deadScreen.SetActive(true);
+			GameObject.FindObjectOfType<GameUIController>().DeadScreen_ActiveScreen();
 
 		}
 
