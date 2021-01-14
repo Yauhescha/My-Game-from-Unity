@@ -134,7 +134,6 @@ public class GameUIController : MonoBehaviour
     }
     public void KeyboardControl_Pause()
     {
-        Debug.Log("PAUSES");
         pausedPanel.SetActive(true);
         keyboardControl.SetActive(false);
         Time.timeScale = 0;
