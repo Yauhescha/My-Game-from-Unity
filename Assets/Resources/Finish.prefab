@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 6987768119492897576}
   m_Layer: 0
   m_Name: Finish
-  m_TagString: Untagged
+  m_TagString: FinishPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,6 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6fd651d9ae04944b737486c61031e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondHard: 0
+  secondNormal: 0
 --- !u!61 &6987768119492897576
 BoxCollider2D:
   m_ObjectHideFlags: 0

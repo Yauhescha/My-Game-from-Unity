@@ -19,8 +19,8 @@ public class FinishController : MonoBehaviour
             GameUIController uiController = GameObject.FindObjectOfType<GameUIController>();
             uiController.FinishedLevelPanel_setActiveMenuFinishedLevelPanel();
             uiController.FinishedLevelPanel_setFinishedTime(String.Format("{0:0.0}", TimerController.Timer));
-            uiController.FinishedLevelPanel_setNormalAndHardTime(secondNormal.ToString(), secondHard.ToString());
             uiController.FinishedLevelPanel_setScoreSprites(getScore());
+            uiController.FinishedLevelPanel_setNormalAndHardTime(secondNormal.ToString(), secondHard.ToString());
 
             PlayerPrefs.SetInt("LVL_" + GameUIController.currentScene, getScore());
         }

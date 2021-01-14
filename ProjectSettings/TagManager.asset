@@ -25,6 +25,8 @@ TagManager:
   - DeadScreen
   - DeadScreen_Restart
   - DeadScreen_Quit
+  - BackgroundMusic
+  - FinishPrefab
   layers:
   - Default
   - TransparentFX

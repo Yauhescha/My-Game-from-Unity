@@ -175,15 +175,14 @@ public class GameUIController : MonoBehaviour
     }
     public void FinishedLevelPanel_setNormalAndHardTime(string timeNormal, string timeHard)
     {
-        finishedLevelPanel_ComplettedLevelStar[1].GetComponentInChildren<Text>().text = timeNormal.ToString();
-        finishedLevelPanel_ComplettedLevelStar[2].GetComponentInChildren<Text>().text = timeHard.ToString();
+        finishedLevelPanel_ComplettedLevelStar[4].GetComponentInChildren<Text>().text = timeNormal.ToString();
+        finishedLevelPanel_ComplettedLevelStar[5].GetComponentInChildren<Text>().text = timeHard.ToString();
     }
 
     public void FinishedLevelPanel_setScoreSprites(int score)
     {
         for (int i = 0; i < score; i++)
-            finishedLevelPanel_ComplettedLevelStar[i].GetComponent<Image>().overrideSprite
-                = finishedLevelPanel_ComplettedLevelStar[3].GetComponent<Image>().sprite;
+            finishedLevelPanel_ComplettedLevelStar[i+3].GetComponent<Image>().enabled = false;
     }
 
     private void finishedLevelPanel_nextLevel()
